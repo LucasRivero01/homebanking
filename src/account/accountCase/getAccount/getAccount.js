@@ -1,23 +1,24 @@
 const {response} = require('express');
-const client = require('../../../models/client');
+const account = require('../../../models/account');
 
-const clientRepository = require('../../../repositories/clientRepository');
+const accountRepository = require('../../../repositories/accountRepository');
 
-const getClient = async(req, res = response)=>{
+const getAccount = async(req, res = response)=>{
    try{
-      const clients = await clientRepository.getAll();
-      const count = await clientRepository.count();
-      if (!clients){
+      const accounts = await accountRepository.getAll();
+      const count = await accountRepository.count();
+      if (!accounts){
          return res.status(404).json({
             message: 'Not found',
          })
       }
       res.status(200).json({
-         message: 'Clients',
-         response: clients,
+         message: 'Accounts',
+         response: accounts,
          total: count
       })
    }catch(error){
+      console.log(error);
       res.status(500).json({
          message:'Error interno del Servidor',
          err: error
@@ -25,20 +26,21 @@ const getClient = async(req, res = response)=>{
    }
 }
 
-const getClientById = async(req, res = response)=>{
+const getAccountById = async(req, res = response)=>{
    const id = req.params.id;
    try{
-      const client = await clientRepository.getOne(id);
-      if (!client){
+      const account = await accountRepository.getOne(id);
+      if (!account){
          return res.status(404).json({
             message: 'Not found',
          })
       }
       res.status(200).json({
-         message: 'Clients',
-         data: client,
+         message: 'Account',
+         data: account,
       })
    }catch(error){
+      console.log(error);
       res.status(500).json({
          message:'Error interno del Servidor',
          err: error
@@ -47,6 +49,6 @@ const getClientById = async(req, res = response)=>{
 }
 
 module.exports = {
-   getClient,
-   getClientById
+   getAccount,
+   getAccountById
 }

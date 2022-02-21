@@ -1,9 +1,11 @@
 const Client = require('../models/client');
 
-const getAll = async ()     => await Client.find();
-const getOne = async (id)   => await Client.findById(id);
+const getAll = async ()     => await Client.find().populate('accounts');
+// consulto los clientes y sus cuentas (.populate('accounts'))
+const getOne = async (id)   => await Client.findById(id).populate('accounts');
 const count  = async ()     => await Client.count();
 
+// guardo el nuevo cliente
 const save   = async (body) => {
    const client = new Client({
       firstName: body.firstName,
@@ -13,8 +15,6 @@ const save   = async (body) => {
    await client.save();
    return client;
 }
-
-
 
 module.exports = {
    getAll,

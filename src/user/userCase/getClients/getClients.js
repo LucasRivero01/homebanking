@@ -3,6 +3,7 @@ const client = require('../../../models/client');
 
 const clientRepository = require('../../../repositories/clientRepository');
 
+// consulto todos los clientes que existen
 const getClient = async(req, res = response)=>{
    try{
       const clients = await clientRepository.getAll();
@@ -25,6 +26,7 @@ const getClient = async(req, res = response)=>{
    }
 }
 
+// consulto un cliente por id
 const getClientById = async(req, res = response)=>{
    const id = req.params.id;
    try{

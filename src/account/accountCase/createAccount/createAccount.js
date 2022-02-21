@@ -9,6 +9,7 @@ const createAccount = async (req, res = response) => {
          message: 'La cuenta se creo correctamente',
       })
    }catch (error){
+      console.log(error);
       return res.status(500).json({
          message: 'Error interno del servidor',
          err: error

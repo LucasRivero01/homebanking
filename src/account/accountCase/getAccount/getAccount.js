@@ -3,6 +3,7 @@ const account = require('../../../models/account');
 
 const accountRepository = require('../../../repositories/accountRepository');
 
+// consulto todas las cuentas existentes
 const getAccount = async(req, res = response)=>{
    try{
       const accounts = await accountRepository.getAll();
@@ -26,15 +27,19 @@ const getAccount = async(req, res = response)=>{
    }
 }
 
+// consulto las cuentas de un cliente usando su id
 const getAccountById = async(req, res = response)=>{
+   // obtengo el parametro que se recibio
    const id = req.params.id;
    try{
       const account = await accountRepository.getOne(id);
+      // si no tengo cuentas envio un mensaje
       if (!account){
          return res.status(404).json({
             message: 'Not found',
          })
       }
+      // si tiene cuentas ese clientes envío los datos
       res.status(200).json({
          message: 'Account',
          data: account,

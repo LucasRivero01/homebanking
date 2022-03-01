@@ -1,12 +1,12 @@
 const { response } = require('express');
-
 const accountRepository = require ('../../../repositories/accountRepository');
 
 const createAccount = async (req, res = response) => {
    try{
-      await accountRepository.save(req.body);
+      const account = await accountRepository.save(req.body);
       return res.status(201).json({
          message: 'La cuenta se creo correctamente',
+         response: account
       })
    }catch (error){
       console.log(error);
@@ -17,4 +17,6 @@ const createAccount = async (req, res = response) => {
    }
 }
 
-module.exports = {createAccount};
+module.exports = {
+   createAccount
+};

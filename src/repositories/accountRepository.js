@@ -1,4 +1,3 @@
-const { ClientSession } = require('mongodb');
 const Account = require('../models/account');
 const Client = require('../models/client');
 
@@ -15,18 +14,17 @@ const save   = async (body) => {
       balance      : body.balance,
       client       : body.client
    })
+
    const newaccount = await account.save();
-
    const client = await Client.findById(newaccount.client);
-
-   // le agrego el id de la nueva cuenta
+   // le agrego el id de la nueva
    client.accounts.push(newaccount._id);
-
    // actualizo las cuentas que tiene el cliente
    await Client.updateOne({_id: client._id}, {accounts: client.accounts});
-
    return account;
 }
+
+
 
 module.exports = {
    getAll,

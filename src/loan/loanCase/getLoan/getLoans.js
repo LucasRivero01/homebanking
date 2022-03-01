@@ -1,21 +1,21 @@
 const {response} = require('express');
-const client = require('../../../models/client');
+const loan = require('../../../models/loan');
 
-const clientRepository = require('../../../repositories/clientRepository');
+const loanRepository = require('../../../repositories/loanRepository');
 
 // consulto todos los clientes que existen
-const getClient = async(req, res = response)=>{
+const getLoan = async(req, res = response)=>{
    try{
-      const clients = await clientRepository.getAll();
-      const count = await clientRepository.count();
-      if (!clients){
+      const loans = await loanRepository.getAll();
+      const count = await loanRepository.count();
+      if (!loans){
          return res.status(404).json({
             message: 'Not found',
          })
       }
       res.status(200).json({
-         message: 'Clients',
-         response: clients,
+         message: 'Loans',
+         response: loans,
          total: count
       })
    }catch(error){
@@ -28,20 +28,21 @@ const getClient = async(req, res = response)=>{
 }
 
 // consulto un cliente por id
-const getClientById = async(req, res = response)=>{
+const getLoanById = async(req, res = response)=>{
    const id = req.params.id;
    try{
-      const client = await clientRepository.getOne(id);
-      if (!client){
+      const loan = await loanRepository.getOne(id);
+      if (!loan){
          return res.status(404).json({
             message: 'Not found',
          })
       }
       res.status(200).json({
-         message: 'Clients',
-         data: client,
+         message: 'Loan',
+         data: loan,
       })
    }catch(error){
+      console.log(error);
       res.status(500).json({
          message:'Error interno del Servidor',
          err: error
@@ -50,6 +51,6 @@ const getClientById = async(req, res = response)=>{
 }
 
 module.exports = {
-   getClient,
-   getClientById
+   getLoan,
+   getLoanById
 }

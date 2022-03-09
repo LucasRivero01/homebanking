@@ -11,20 +11,20 @@ const count  = async ()     => await Transaction.count();
 // guardo la nueva transaccion
 const save   = async (body) => {
    // si se trata de un credito lo paso a negativo
-   if(transactionType.CREDIT){
+   if(body.type = 1){
       body.amount = body.amount * -1
    }
    const transaction = new Transaction({
-      type        : transactionType.DEBIT,
+      type        : body.type,
       amount      : body.amount,
       description : body.description,
       account     : body.account
    })
 
    const newtransaction = await transaction.save();
-   
    const account = await Account.findById(newtransaction.account);
    // le agrego el id de la nueva cuenta
+   
    account.transactions.push(newtransaction._id);
    
    // actualizo las cuentas que tiene el cliente

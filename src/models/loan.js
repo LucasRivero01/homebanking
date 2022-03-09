@@ -4,7 +4,7 @@ const loanSchema = new mongoose.Schema({
   name:       { type: String, unique: true, required: true },
   maxAmount:  { type: Number, required: true },
   payments:   [{ type: Number, required: true }],
-  loanClients: [{ type: mongoose.Schema.Types.ObjectId, ref: 'loanClient', autopopulate: true }]
+  loanClients: [{ type: mongoose.Schema.Types.ObjectId, ref: 'loanClient', autopopulate: false }]
 })
 
 loanSchema.plugin(require('mongoose-autopopulate'));

@@ -8,7 +8,7 @@ const cardSchema = new mongoose.Schema({
   cvv:        { type: Number, required: true},
   thruDate:   { type: Date, required: true},
   fromDate:   { type: Date, required: true},
-  client:     { type: mongoose.Schema.Types.ObjectId, ref: 'client', autopopulate:true},
+  client:     {type: mongoose.Schema.Types.ObjectId, ref: 'client', autopopulate: false},
   })
 
 cardSchema.plugin(require('mongoose-autopopulate'));

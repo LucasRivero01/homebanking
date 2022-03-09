@@ -15,7 +15,7 @@ const getClient = async(req, res = response)=>{
       }
       res.status(200).json({
          message: 'Clients',
-         response: clients,
+         data: clients,
          total: count
       })
    }catch(error){

@@ -9,7 +9,7 @@ const accountSchema = new mongoose.Schema({
   
   transactions: [{type: mongoose.Schema.Types.ObjectId, ref: 'transaction', autopopulate:true}],
   // id del cliente para relacionar las colecciones
-  //client: {type: mongoose.Schema.Types.ObjectId, ref: 'client', autopopulate: true},
+  client: {type: mongoose.Schema.Types.ObjectId, ref: 'client', autopopulate: false},
 });
 accountSchema.plugin(require('mongoose-autopopulate'));
 module.exports = mongoose.model('account', accountSchema);

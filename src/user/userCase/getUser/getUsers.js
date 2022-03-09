@@ -24,9 +24,9 @@ const loginUser = async(req, res = response)=>{
       const token = jwt.sign({
          name: user.name,
          id: user._id,
-      }, process.env.SECRET_KEY)
-
-
+      }, process.env.SECRET_KEY, {
+         expiresIn: 4000
+      })
       res.status(200).json({
          message: `Bienvenido, ${user.name}`,
          token
@@ -39,28 +39,6 @@ const loginUser = async(req, res = response)=>{
       })
    }
 }
-
-// consulto un cliente por id
-// const getClientById = async(req, res = response)=>{
-//    const id = req.params.id;
-//    try{
-//       const client = await clientRepository.getOne(id);
-//       if (!client){
-//          return res.status(404).json({
-//             message: 'Not found',
-//          })
-//       }
-//       res.status(200).json({
-//          message: 'Clients',
-//          data: client,
-//       })
-//    }catch(error){
-//       res.status(500).json({
-//          message:'Error interno del Servidor',
-//          err: error
-//       })
-//    }
-// }
 
 module.exports = {
    loginUser,

@@ -1,7 +1,6 @@
 const Client = require('../models/client');
 
 const getAll = async ()     => await Client.find();
-// consulto los clientes y sus cuentas (.populate('accounts'))
 const getOne = async (id)   => await Client.findById(id);
 const count  = async ()     => await Client.count();
 

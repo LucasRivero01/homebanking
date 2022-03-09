@@ -14,7 +14,7 @@ const verifyToken = require('../routers/validate-token');
 // consulta por id
 router.get('/clients/:id', verifyToken, getClients.getClientById);
 // consulta todos
-router.get('/clients',  verifyToken, getClients.getClient);
+router.get('/clients', getClients.getClient);
 // creacion de clients
 router.post('/clients', verifyToken, createClient.createClient);
 
@@ -58,9 +58,7 @@ router.get('/card', verifyToken, getCards.getCard);
 // creacion de transaction
 router.post('/card', verifyToken, createCards.createCard);
 
-//router.post('/signup', createLogins.createLogin);
-
-router.post('/signup', verifyToken, createUser.createUser);
-router.post('/login', loginUser.loginUser)
+router.post('/signup', createUser.createUser);
+router.post('/login', loginUser.loginUser);
 
 module.exports = router;

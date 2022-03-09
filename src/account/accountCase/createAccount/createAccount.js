@@ -1,8 +1,10 @@
 const { response } = require('express');
 const accountRepository = require ('../../../repositories/accountRepository');
+const clientRepository = require ('../../../repositories/clientRepository');
 
 const createAccount = async (req, res = response) => {
    try{
+      console.log(req.body.client);
       const account = await accountRepository.save(req.body);
       return res.status(201).json({
          message: 'La cuenta se creo correctamente',
